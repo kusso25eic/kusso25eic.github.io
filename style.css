@@ -1,7 +1,10 @@
 .gs-table {
-  /* table-layout: fixed; */
-  /* width: 100%; */
-  white-space: nowrap;
-  font-family: monospace;
-  text-align: center;
+	white-space: nowrap;
+	font-family: monospace;
+	text-align: center;
+}
+
+.pc-table {
+	table-layout: fixed;
+	width: 100%;
 }
