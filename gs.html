@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/gs-fetch.js" defer></script>
+		<title>GS科目開講表</title>
+	</head>
+	<body>
+		<h1>GS科目開講表</h1>
+		<h2>使い方・注意</h2>
+		<ul>
+			<li>科目構成・年度・クォーターを選択して「表示」を押すと対応する表が表示されます。</li>
+			<li>"月1"の行と"1A"の列が交差するセルが空欄の場合、月曜1限には1A「現代世界への歴史学的アプローチ」が開講されないことを意味します。</li>
+			<li>"月2"の行と"1C"の列が交差するセルに"1"と書かれている場合、月曜2限に1C「グローバル時代の社会学」が1個開講されることを意味します。</li>
+			<li>この表はコピーしてExcelに貼り付けることができます。</li>
+			<li>内容は誤っているか最新のものではない可能性があります。最新の情報は<a href="https://eduweb.sta.kanazawa-u.ac.jp/portal/Public/Syllabus/SearchMain.aspx">Webシラバス</a>を確認してください。</li>
+		</ul>
+		<p>科目構成</p>
+		<input type="radio", name="newold", value="new", id="new" checked><label for="new">新構成(4群, 2026年度入学者)</label>
+		<input type="radio", name="newold", value="old", id="old"><label for="old">旧構成(6群, 2021-2025年度入学者)</label>
+		<p>年度</p>
+		<input type="radio", name="year", value="2026", id="y2026" checked><label for="y2026">2026</label>
+		<p>クォーター</p>
+		<input type="radio", name="quarter", value="Q1", id="q1" checked><label for="q1">Q1</label>
+		<input type="radio", name="quarter", value="Q2", id="q2"><label for="q2">Q2</label>
+		<input type="radio", name="quarter", value="Q3", id="q3"><label for="q3">Q3</label>
+		<input type="radio", name="quarter", value="Q4", id="Q4"><label for="q4">Q4</label>
+		<br><br>
+		<button type="button", id="fetchBtn">表示</button>
+		<br><br>
+		<div id="result"></div>
+		
+		<h2 id="taiou">新旧対応表</h2>
+		<h3>新→旧</h3>
+		<table border="1">
+			<tr><th>旧区分</th><th>旧科目名</th><th>新区分</th><th>新科目名</th></tr>
+			<tr><td>1A</td><td></td><td>1A</td><td>現代世界への歴史学的アプローチ</td></tr>
+			<tr><td>1C</td><td></td><td>1C</td><td>グローバル時代の社会学</td></tr>
+			<tr><td>4F</td><td></td><td>1G</td><td>グローバル社会と地域の課題</td></tr>
+			<tr><td>4E</td><td></td><td>1H</td><td>グローバル時代の国際協力</td></tr>
+			<tr><td>2D</td><td>健康科学</td><td>1I</td><td>ヘルスとウェルネス</td></tr>
+			<tr><td>2B</td><td>パーソナリティ心理学</td><td>1J</td><td>多文化共生の心理学</td></tr>
+			<tr><td>4A</td><td></td><td>1K</td><td>地域社会と文化人類学</td></tr>
+			<tr><td>5F</td><td></td><td>1L</td><td>現代社会と人権</td></tr>
+			<tr><td>-</td><td>-</td><td>1Z</td><td>KUGS実践</td></tr>
+			<tr><td>2A</td><td></td><td>2A</td><td>哲学（自我論）</td></tr>
+			<tr><td>2C</td><td></td><td>2C</td><td>グローバル時代の文学</td></tr>
+			<tr><td>2F</td><td></td><td>2F</td><td>エクササイズ＆スポーツ 実技</td></tr>
+			<tr><td>3E</td><td></td><td>2G</td><td>芸術と自己表現</td></tr>
+			<tr><td>4D</td><td></td><td>2H</td><td>異文化体験</td></tr>
+			<tr><td>4C</td><td></td><td>2I</td><td>異文化間コミュニケーション</td></tr>
+			<tr><td>4B</td><td></td><td>2J</td><td>日本史・日本文化</td></tr>
+			<tr><td>3C</td><td></td><td>2K</td><td>価値と情動の認知科学</td></tr>
+			<tr><td>3B</td><td></td><td>3B</td><td>クリティカル・シンキング</td></tr>
+			<tr><td>3F</td><td></td><td>3F</td><td>スポーツ科学</td></tr>
+			<tr><td>5D</td><td></td><td>3G</td><td>環境学とESD</td></tr>
+			<tr><td>1E</td><td></td><td>3H</td><td>地球生物圏と人間</td></tr>
+			<tr><td>5A</td><td></td><td>3I</td><td>科学技術と科学方法論</td></tr>
+			<tr><td>5E</td><td></td><td>3J</td><td>生活と社会保障</td></tr>
+			<tr><td>1B</td><td></td><td>3K</td><td>グローバル時代の政治経済学</td></tr>
+			<tr><td>2E</td><td></td><td>3L</td><td>細胞・分子生物学</td></tr>
+			<tr><td>6B</td><td></td><td>4G</td><td>AI入門</td></tr>
+			<tr><td>6C</td><td></td><td>4H</td><td>情報の科学</td></tr>
+			<tr><td></td><td></td><td>4I</td><td><i>(不明)</i></td></tr>
+			<tr><td>6Ea</td><td>論理学と数学の基礎（論理学から見る世界）</td><td>4J</td><td>論証と証明の技法－数理論理学入門</td></tr>
+			<tr><td>6Aa</td><td>インテグレーテッド科学（物理の世界）</td><td>4K</td><td>普遍性の物理</td></tr>
+			<tr><td>6Ab</td><td>インテグレーテッド科学（化学の世界）</td><td>4L</td><td>化学の視点</td></tr>
+			<tr><td>6Eb</td><td>論理学と数学の基礎（数学的発想法）</td><td>4M</td><td>数学的思考法</td></tr>
+			<tr><td>6D</td><td></td><td>4N</td><td>デザイン思考入門</td></tr>
+		</table>
+		<h3>旧→新</h3>
+		<table border="1">
+			<tr><th>旧区分</th><th>旧科目名</th><th>新区分</th><th>新科目名</th></tr>
+			<tr><td>1A</td><td>現代世界への歴史学的アプローチ</td><td>1A</td><td></td></tr>
+			<tr><td>1B</td><td>グローバル時代の政治経済学</td><td>3K</td><td></td></tr>
+			<tr><td>1C</td><td>グローバル時代の社会学</td><td>1C</td><td></td></tr>
+			<tr><td>1D</td><td>ケーススタディによる応用倫理学</td><td>-</td><td>-</td></tr>
+			<tr><td>1E</td><td>地球生物圏と人間</td><td>3H</td><td></td></tr>
+			<tr><td>2A</td><td>哲学（自我論）</td><td>2A</td><td></td></tr>
+			<tr><td>2B</td><td>パーソナリティ心理学</td><td>1J</td><td>多文化共生の心理学</td></tr>
+			<tr><td>2C</td><td>グローバル時代の文学</td><td>2C</td><td></td></tr>
+			<tr><td>2D</td><td>健康科学</td><td>1I</td><td>ヘルスとウェルネス</td></tr>
+			<tr><td>2E</td><td>細胞・分子生物学</td><td>3L</td><td></td></tr>
+			<tr><td>2F</td><td>エクササイズ＆スポーツ 実技</td><td>2F</td><td></td></tr>
+			<tr><td>3B</td><td>クリティカル・シンキング</td><td>3B</td><td></td></tr>
+			<tr><td>3C</td><td>価値と情動の認知科学</td><td>2K</td><td></td></tr>
+			<tr><td>3E</td><td>芸術と自己表現</td><td>2G</td><td></td></tr>
+			<tr><td>3F</td><td>スポーツ科学</td><td>3F</td><td></td></tr>
+			<tr><td>4A</td><td>地域社会と文化人類学</td><td>1K</td><td></td></tr>
+			<tr><td>4B</td><td>日本史・日本文化</td><td>2J</td><td></td></tr>
+			<tr><td>4C</td><td>異文化間コミュニケーション</td><td>2I</td><td></td></tr>
+			<tr><td>4D</td><td>異文化体験</td><td>2H</td><td></td></tr>
+			<tr><td>4E</td><td>グローバル時代の国際協力</td><td>1H</td><td></td></tr>
+			<tr><td>4F</td><td>グローバル社会と地域の課題</td><td>1G</td><td></td></tr>
+			<tr><td>5A</td><td>科学技術と科学方法論</td><td>3I</td><td></td></tr>
+			<tr><td>5B</td><td>統計学から未来を見る</td><td>-</td><td>-</td></tr>
+			<tr><td>5D</td><td>環境学とESD</td><td>3G</td><td></td></tr>
+			<tr><td>5E</td><td>生活と社会保障</td><td>3J</td><td></td></tr>
+			<tr><td>5F</td><td>現代社会と人権</td><td>1L</td><td></td></tr>
+			<tr><td>6Aa</td><td>インテグレーテッド科学（物理の世界）</td><td>4K</td><td>普遍性の物理</td></tr>
+			<tr><td>6Ab</td><td>インテグレーテッド科学（化学の世界）</td><td>4L</td><td>化学の視点</td></tr>
+			<tr><td>6B</td><td>AI入門</td><td>4G</td><td></td></tr>
+			<tr><td>6C</td><td>情報の科学</td><td>4H</td><td></td></tr>
+			<tr><td>6D</td><td>デザイン思考入門</td><td>4N</td><td></td></tr>
+			<tr><td>6Ea</td><td>論理学と数学の基礎（論理学から見る世界）</td><td>4J</td><td>論証と証明の技法－数理論理学入門</td></tr>
+			<tr><td>6Eb</td><td>論理学と数学の基礎（数学的発想法）</td><td>4M</td><td>数学的思考法</td></tr>
+		</table>
+	</body>
+</html>
